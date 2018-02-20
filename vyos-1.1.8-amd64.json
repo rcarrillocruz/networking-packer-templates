@@ -1,0 +1,54 @@
+{
+  "builders": [{
+    "type": "qemu",
+    "iso_url": "{{user `mirror`}}/iso/release/1.1.8/vyos-1.1.8-amd64.iso",
+    "iso_checksum": "{{user `iso_checksum`}}",
+    "iso_checksum_type": "{{user `iso_checksum_type`}}",
+    "output_directory": "output-vyos-1.1.8-amd64-{{build_type}}",
+    "vm_name": "packer-vyos-1.1.8-amd64",
+    "disk_size": "{{user `disk_size`}}",
+    "headless": "{{user `headless`}}",
+    "boot_wait": "5s",
+    "boot_command": [
+      "<enter><wait10><wait10>",
+      "vyos<enter><wait>",
+      "vyos<enter><wait>",
+      "install image<enter><wait>",
+      "<enter><wait>",
+      "<enter><wait>",
+      "<enter><wait>",
+      "Yes<enter><wait>",
+      "<enter><wait10>",
+      "<enter><wait>",
+      "<enter><wait>",
+      "vyos<enter><wait>",
+      "vyos<enter><wait>",
+      "<enter><wait>",
+      "configure<enter><wait>",
+      "set interfaces ethernet eth0 address dhcp<enter><wait>",
+      "set service ssh<enter><wait>",
+      "commit<enter><wait>",
+      "save<enter><wait>",
+      "exit<enter><wait>"
+    ],
+    "ssh_timeout": "{{user `ssh_timeout`}}",
+    "ssh_username": "vyos",
+    "ssh_password": "vyos",
+    "shutdown_command": "sudo poweroff",
+    "qemuargs": [
+      ["-m", "{{user `memory`}}"],
+      ["-smp", "{{user `cpus`}}"]
+    ]
+  }],
+  "variables": {
+    "compression_level": "6",
+    "cpus": "1",
+    "disk_size": "40000",
+    "headless": "false",
+    "iso_checksum": "ff4c8e1822e653d8d85f4a90f30c6d2ac047514c",
+    "iso_checksum_type": "sha1",
+    "memory": "512",
+    "mirror": "http://mirror.vyos.net",
+    "ssh_timeout": "60m"
+  }
+}
