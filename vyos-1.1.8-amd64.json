@@ -58,7 +58,7 @@
     "compression_level": "6",
     "cpus": "1",
     "disk_size": "40000",
-    "headless": "false",
+    "headless": "true",
     "iso_checksum": "ff4c8e1822e653d8d85f4a90f30c6d2ac047514c",
     "iso_checksum_type": "sha1",
     "memory": "512",
